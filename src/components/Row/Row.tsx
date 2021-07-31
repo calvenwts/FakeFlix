@@ -22,17 +22,14 @@ import RowPoster from "../RowPoster/RowPoster";
 SwiperCore.use([Navigation, Pagination]);
 
 interface Props {
-  selector: any;
   title: string;
   url: string;
   genre: string;
   isLarge: boolean;
 }
 
-const Row = ({ selector, title, url, genre, isLarge }: Props) => {
+const Row = ({ title, url, genre, isLarge }: Props) => {
   const { width } = useViewport();
-  // const rowData = useSelector(selector);
-  // const { loading, error, data: results } = rowData;
   const [loading, setLoading] = useState<boolean>(true);
   let error = false;
   const { pathname } = useLocation();
@@ -43,17 +40,13 @@ const Row = ({ selector, title, url, genre, isLarge }: Props) => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      if (url) {
-        axios.get(url).then((res) => {
-          setResults([...res.data.results]);
-          setLoading(false);
-        });
-      }
-    }, 3000);
+    if (url) {
+      axios.get(url).then((res) => {
+        setResults([...res.data.results]);
+        setLoading(false);
+      });
+    }
   }, [url]);
-
-  console.log("results", results);
 
   //Custom Swiper config
   const navigationPrevRef = useRef(null);

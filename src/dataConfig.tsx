@@ -1,6 +1,6 @@
 import requests from "./requests";
 
-const {
+export const {
   fetchReleasedMoviesByOneMonth,
   fetchTrendingMovies,
   fetchNetflixOriginals,

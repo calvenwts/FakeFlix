@@ -1,17 +1,13 @@
 import "./homepage.scss";
-// import Banner from "../../components/Banner/Banner";
 import Row from "../../components/Row/Row";
 // import Credits from "../../components/Credits/Credits";
 import { useRetrieveData } from "../../hooks/useRetrieveData";
 import { motion } from "framer-motion";
 import { defaultPageFadeInVariants } from "../../motionUtils";
-import { useEffect } from "react";
-import axios from "axios";
-import { useState } from "react";
+import Banner from "../../components/Banner/Banner";
 
 const Homepage = () => {
   const rows = useRetrieveData("movies");
-  console.log("rows", rows);
 
   return (
     <motion.div
@@ -21,7 +17,7 @@ const Homepage = () => {
       animate="animate"
       exit="exit"
     >
-      {/* <Banner /> */}
+      <Banner />
       {rows && rows.map((props: any) => <Row key={props.id} {...props} />)}
       {/* <Credits /> */}
     </motion.div>
